@@ -14,7 +14,7 @@ countUniqueValues([-3, -1, 0, 0, 0, 1, 2, 2]) // 5
 [1, 2, 3, 4, 4]
         
 
-function countUniquevalues(arr) {
+function countUniqueValues(arr) {
   // pointer should be the incremental counter
 
   // escape hatch for arr length 0
@@ -34,4 +34,18 @@ function countUniquevalues(arr) {
 
   // return + 1 because arr starts at 0
   return pointer + 1;
+}
+
+function countUniqueValues(arr) {
+  // keep a counter for unique values
+  // increment counter when doesnt exist in object
+  const storage = {};
+  let counter = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (!storage[arr[i]]) {
+      storage[arr[i]] = true;
+      counter++;
+    }
+  }
+  return counter;
 }
