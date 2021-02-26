@@ -48,3 +48,36 @@ function maxSubarraySum(arr, n) {
   }
   return maxSum
 }
+
+
+/*
+  Write a function called maxSubarraySum
+  Accepts an array of numbers and a number called "n" as args
+  The function should calculate the max sum of "n" consecutive elements in the array
+*/
+
+// EG maxSubarraySum([4,2,1,6,2], 4) // 13
+// EG maxSubarraySum([1,2,5,2,8,1,5], 4) // 17
+
+function maxSubarraySum(arr, n) {
+  // if n is greater than arr length, return null
+  if (n > arr.length || arr.length === 0 || n === 0) {
+    return null;
+  }
+  // calc max sum by iterating n times
+  let maxSum;
+  for (let i = 0; i < n; i++) {
+    maxSum += arr[i];
+  }
+  // assign tempsum with maxSum
+  let tempSum = maxSum;
+
+  // Iterate over arr starting from n
+  // The tempSum should be prev tempSum minus first element of n elements
+  // plus ith element
+  for (let i = n; i < arr.length; i++) {
+    tempSum = tempSum - arr[i - n] + arr[i];
+    maxSum = Math.max(tempSum, maxSum);
+  }
+  return maxSum;
+}
